@@ -37,7 +37,7 @@ target_link_libraries(adrenaline
 )
 
 vita_create_self(eboot.bin adrenaline UNSAFE)
-vita_create_vpk(Adrenaline.vpk ${VITA_TITLEID} eboot.bin
+vita_create_vpk(Adrenaline_JPN.vpk ${VITA_TITLEID} eboot.bin
   VERSION ${VITA_VERSION}
   NAME ${VITA_APP_NAME}
   FILE pkg/sce_sys/icon0.png sce_sys/icon0.png
