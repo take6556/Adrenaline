@@ -84,8 +84,8 @@ static MenuEntry settings_entries[] = {
 	{ "画面サイズ (PSP)", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.screen_size, screen_size_options, sizeof(screen_size_options) / sizeof(char **) },
 	{ "画面の出力形式 (PS1)", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.screen_mode, screen_mode_options, sizeof(screen_mode_options) / sizeof(char **) },
 	{ "メモリースティックの場所の選択", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.ms_location, ms_location_options, sizeof(ms_location_options) / sizeof(char **) },
-	{ "デュアルショック3か4を使う", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.use_ds3_ds4, no_yes_options, sizeof(no_yes_options) / sizeof(char **) },
-	{ "Adrenalineの起動ロゴを飛ばす", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.skip_logo, no_yes_options, sizeof(no_yes_options) / sizeof(char **) },
+	{ "DUALSHOCK3/DUALSHOCK4を使用する", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.use_ds3_ds4, no_yes_options, sizeof(no_yes_options) / sizeof(char **) },
+	{ "Adrenalineの起動アニメーションをスキップする", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.skip_logo, no_yes_options, sizeof(no_yes_options) / sizeof(char **) },
 };
 
 static MenuEntry about_entries[] = {
@@ -236,7 +236,7 @@ void drawMenu() {
 		
 		// Info about Original filter
 		if (tab_sel == 2 && menu_sel == 0 && config.graphics_filtering == 0) {
-			char *title = "オリジナルフィルタの場合「画面のぼかし」以外の画面設定は反映されません。.";
+			char *title = "オリジナルフィルタの場合「画面のぼかし」以外の画面設定は反映されません。";
 			pgf_draw_textf(WINDOW_X + ALIGN_CENTER(WINDOW_WIDTH, vita2d_pgf_text_width(font, FONT_SIZE, title)), FONT_Y_LINE(17), WHITE, FONT_SIZE, title);
 		}
 	} else {
