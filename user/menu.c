@@ -64,28 +64,28 @@ static int EnterStandbyMode();
 static int OpenOfficialSettings();
 static int ExitPspEmuApplication();
 
-static char *graphics_options[] = { "Original", "Bilinear", "Sharp bilinear", "Advanced AA", "LCD3x" };
-static char *screen_mode_options[] = { "Original", "Normal", "Zoom", "Full" };
-static char *no_yes_options[] = { "No", "Yes" };
-static char *yes_no_options[] = { "Yes", "No" };
+static char *graphics_options[] = { "オリジナル", "Bilinear", "Sharp Bilinear", "Advanced AA", "LCD3x" };
+static char *screen_mode_options[] = { "オリジナル", "普通", "拡大", "画面全体" };
+static char *no_yes_options[] = { "いいえ", "はい" };
+static char *yes_no_options[] = { "はい", "いいえ" };
 static char *screen_size_options[] = { "2.0x", "1.75x", "1.5x", "1.25x", "1.0x" };
 static char *ms_location_options[] = { "ux0:pspemu", "ur0:pspemu", "imc0:pspemu", "uma0:pspemu" };
 
 static MenuEntry main_entries[] = {
-	{ "Enter Standby Mode", MENU_ENTRY_TYPE_CALLBACK, 0, EnterStandbyMode, NULL, NULL, 0 },
-	{ "Open Official Settings", MENU_ENTRY_TYPE_CALLBACK, 0, OpenOfficialSettings, NULL, NULL, 0 },
-	{ "Exit PspEmu Application", MENU_ENTRY_TYPE_CALLBACK, 0, ExitPspEmuApplication, NULL, NULL, 0 },
-	{ "Exit Adrenaline Menu", MENU_ENTRY_TYPE_CALLBACK, 0, ExitAdrenalineMenu, NULL, NULL, 0 },
+	{ "スタンバイモードに入る", MENU_ENTRY_TYPE_CALLBACK, 0, EnterStandbyMode, NULL, NULL, 0 },
+	{ "Vitaの純正の設定を開く", MENU_ENTRY_TYPE_CALLBACK, 0, OpenOfficialSettings, NULL, NULL, 0 },
+	{ "Adrenalineを終了する", MENU_ENTRY_TYPE_CALLBACK, 0, ExitPspEmuApplication, NULL, NULL, 0 },
+	{ "XMBに戻る", MENU_ENTRY_TYPE_CALLBACK, 0, ExitAdrenalineMenu, NULL, NULL, 0 },
 };
 
 static MenuEntry settings_entries[] = {
-	{ "Graphics Filtering", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.graphics_filtering, graphics_options, sizeof(graphics_options) / sizeof(char **) },
-	{ "Smooth Graphics", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.no_smooth_graphics, yes_no_options, sizeof(yes_no_options) / sizeof(char **) },
-	{ "Screen Size (PSP)", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.screen_size, screen_size_options, sizeof(screen_size_options) / sizeof(char **) },
-	{ "Screen Mode (PS1)", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.screen_mode, screen_mode_options, sizeof(screen_mode_options) / sizeof(char **) },
-	{ "Memory Stick Location", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.ms_location, ms_location_options, sizeof(ms_location_options) / sizeof(char **) },
-	{ "Use DS3/DS4 controller", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.use_ds3_ds4, no_yes_options, sizeof(no_yes_options) / sizeof(char **) },
-	{ "Skip Adrenaline Boot Logo", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.skip_logo, no_yes_options, sizeof(no_yes_options) / sizeof(char **) },
+	{ "画面フィルタの選択", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.graphics_filtering, graphics_options, sizeof(graphics_options) / sizeof(char **) },
+	{ "画面のぼかし", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.no_smooth_graphics, yes_no_options, sizeof(yes_no_options) / sizeof(char **) },
+	{ "画面サイズ (PSP)", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.screen_size, screen_size_options, sizeof(screen_size_options) / sizeof(char **) },
+	{ "画面の出力形式 (PS1)", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.screen_mode, screen_mode_options, sizeof(screen_mode_options) / sizeof(char **) },
+	{ "メモリースティックの場所の選択", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.ms_location, ms_location_options, sizeof(ms_location_options) / sizeof(char **) },
+	{ "デュアルショック3か4を使う", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.use_ds3_ds4, no_yes_options, sizeof(no_yes_options) / sizeof(char **) },
+	{ "Adrenalineの起動ロゴを飛ばす", MENU_ENTRY_TYPE_OPTION, 0, NULL, &config.skip_logo, no_yes_options, sizeof(no_yes_options) / sizeof(char **) },
 };
 
 static MenuEntry about_entries[] = {
@@ -104,10 +104,10 @@ static MenuEntry about_entries[] = {
 };
 
 static TabEntry tab_entries[] = {
-	{ "Main", main_entries, sizeof(main_entries) / sizeof(MenuEntry), 1 },
-	{ "States", NULL, 0, 0 },
-	{ "Settings", settings_entries, sizeof(settings_entries) / sizeof(MenuEntry), 1 },
-	{ "About", about_entries, sizeof(about_entries) / sizeof(MenuEntry), 0 },
+	{ "メインメニュー", main_entries, sizeof(main_entries) / sizeof(MenuEntry), 1 },
+	{ "ステートセーブ", NULL, 0, 0 },
+	{ "設定", settings_entries, sizeof(settings_entries) / sizeof(MenuEntry), 1 },
+	{ "Adrenalineについて", about_entries, sizeof(about_entries) / sizeof(MenuEntry), 0 },
 };
 
 #define N_TABS (sizeof(tab_entries) / sizeof(TabEntry))
@@ -190,7 +190,7 @@ void drawMenu() {
 
 	// Draw title
 	vita2d_draw_rectangle(WINDOW_X, WINDOW_Y, WINDOW_WIDTH, 38.0f, COLOR_ALPHA(GRAY, 0x7F));
-	char *title = "Adrenaline Menu";
+	char *title = "Adrenaline メニュー";
 	pgf_draw_textf(WINDOW_X + ALIGN_CENTER(WINDOW_WIDTH, vita2d_pgf_text_width(font, FONT_SIZE, title)), FONT_Y_LINE(0), WHITE, FONT_SIZE, title);
 
 	// Draw tabs
@@ -236,7 +236,7 @@ void drawMenu() {
 		
 		// Info about Original filter
 		if (tab_sel == 2 && menu_sel == 0 && config.graphics_filtering == 0) {
-			char *title = "All graphics related options are not taking effect with the Original rendering mode.";
+			char *title = "オリジナルフィルタの場合「画面のぼかし」以外の画面設定は反映されません。.";
 			pgf_draw_textf(WINDOW_X + ALIGN_CENTER(WINDOW_WIDTH, vita2d_pgf_text_width(font, FONT_SIZE, title)), FONT_Y_LINE(17), WHITE, FONT_SIZE, title);
 		}
 	} else {
@@ -424,7 +424,7 @@ int AdrenalineDraw(SceSize args, void *argp) {
 			vita2d_start_drawing();
 			vita2d_clear_screen();
 
-			char *title = "Please wait...";
+			char *title = "お待ちください...";
 			pgf_draw_textf(ALIGN_CENTER(SCREEN_WIDTH, vita2d_pgf_text_width(font, FONT_SIZE, title)), FONT_Y_LINE(8), WHITE, FONT_SIZE, title);
 
 			// End drawing
